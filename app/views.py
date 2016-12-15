@@ -113,9 +113,9 @@ def login():
         data = request.json
     except:
         return page_not_found()
-    if not data.has_key():
+    if not data.has_key("username"):
         return page_not_found()
-    if not data.has_key():
+    if not data.has_key("password"):
         return page_not_found()
     user = Admin.query.filter(Admin.username == data["username"].strip())
     if not user:
@@ -226,7 +226,7 @@ def create_blog():
         db.session.commit()
     except:
         return as_msg("db transaction failed")
-    return as_success("blog successfully created.")
+    return as_success("blog successfully created.", {di = blog})
 
 @blog.route("/publish_blog", methods = ["GET", "POST"])
 @auth.login_required
