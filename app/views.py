@@ -226,7 +226,7 @@ def create_blog():
         db.session.commit()
     except:
         return as_msg("db transaction failed")
-    return as_success("blog successfully created.", {di = blog})
+    return as_success("blog successfully created.", di = blog)
 
 @blog.route("/publish_blog", methods = ["GET", "POST"])
 @auth.login_required
